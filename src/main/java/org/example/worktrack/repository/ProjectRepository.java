@@ -1,7 +1,9 @@
 package org.example.worktrack.repository;
 
-import org.example.worktrack.service.ProjectService;
+import org.example.worktrack.entities.Projects;  // <-- this is the entity
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProjectRepository extends JpaRepository<ProjectService,Long> {
+@Repository
+public interface ProjectRepository extends JpaRepository<Projects, Long> {
 }

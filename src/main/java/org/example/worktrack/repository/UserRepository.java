@@ -1,6 +1,6 @@
 package org.example.worktrack.repository;
 
-import org.example.worktrack.model.User;
+import org.example.worktrack.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

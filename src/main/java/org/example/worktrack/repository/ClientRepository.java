@@ -1,7 +1,9 @@
 package org.example.worktrack.repository;
 
-import org.example.worktrack.service.ClientService;
+import org.example.worktrack.entities.Clients;  // <-- this is the entity
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ClientRepository extends JpaRepository<ClientService, Long> {
+@Repository
+public interface ClientRepository extends JpaRepository<Clients, Long> {
 }
