@@ -3,7 +3,7 @@ import org.example.worktrack.DTOs.ProjectsDTO;
 import org.example.worktrack.entities.Projects;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {TaskMap.class})
 public interface ProjectMap {
 
     ProjectsDTO toDto(Projects projects);

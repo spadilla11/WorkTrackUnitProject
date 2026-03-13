@@ -2,11 +2,14 @@ package org.example.worktrack.controller;
 
 import org.example.worktrack.DTOs.UserDTO;
 import org.example.worktrack.service.UserService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
 public class AuthController {
+
     private final UserService userService;
 
     public AuthController(UserService userService){
@@ -28,7 +31,5 @@ public class AuthController {
     public String loginPage(){
         return "login";
     }
-
-
 
 }

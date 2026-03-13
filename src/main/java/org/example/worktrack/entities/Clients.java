@@ -17,7 +17,7 @@ public class Clients {
     private Long id;
     private String name;
     private String email;
-    private String Company;
+    private String company;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Projects> projects;

@@ -5,7 +5,9 @@ import lombok.*;
 import org.example.worktrack.enums.ProjectStatus;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,13 +33,14 @@ public class Projects {
     @JoinColumn(name = "client_id")
     private Clients client;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "project_tasks",
-            joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "task_id")
-    )
-    private Set<Tasks> tasks = new HashSet<>();
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Tasks> tasks = new ArrayList<>();
 
-
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "project_tasks",
+//            joinColumns = @JoinColumn(name = "project_id"),
+//            inverseJoinColumns = @JoinColumn(name = "task_id")
+//    )
+//    private Set<Tasks> tasks = new HashSet<>();
 }

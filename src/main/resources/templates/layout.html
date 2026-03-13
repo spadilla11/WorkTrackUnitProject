@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FlowDesk</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<nav class="navbar" style="background: #1E3A8A; color: white; padding: 15px 30px; display: flex; justify-content: space-between;">
+    <div class="logo">FlowDesk</div>
+    <div class="links">
+        <a href="/dashboard" style="color: white; margin-left: 20px;">Dashboard</a>
+        <a href="/projects" style="color: white; margin-left: 20px;">Projects</a>
+        <a href="/tasks" style="color: white; margin-left: 20px;">Tasks</a>
+    </div>
+</nav>
+
+<div th:insert="~{this :: content}"></div>
+
+</body>
+</html>

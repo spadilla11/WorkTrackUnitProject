@@ -3,71 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>WorkTrack</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-    <script src="https://unpkg.com/lucid@latest"></script>
+    <link rel="stylesheet" href="/landing.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<nav>
-<span><b>WorkTrack</b></span>
 
-<div>
-    <a href="/login">Log in</a>
-    <a class="primary-btn" href="/signup">Get Started</a>
-</div>
+<nav>
+    <span><b>WorkTrack</b></span>
+
+    <div>
+        <a href="/login">Log in</a>
+        <a class="primary-btn" href="/signup">Get Started</a>
+    </div>
 </nav>
-<section class = "hero">
+
+<section class="hero">
     <div class="tag">
-        <i data-lucide="zap"></i> Built for freelancers
+        <i data-lucide="zap"></i>  Built for freelancers
     </div>
 
-    <h1> Manage projects <br>
+    <h1>
+        Manage projects <br>
         Delight clients.
     </h1>
 
     <p>
-        WorkTrack is the all-in-one project managment tool designed for freelancers
+        WorkTrack is the all-in-one project management tool designed for freelancers
         who want to stay organized and deliver exceptional work.
     </p>
 
     <div class="hero-buttons">
-        <a class="primary-btn" href="signup">Start Free →</a>
-        <a href="/login"> Log in </a>
+        <a class="primary-btn" href="/signup">Start Free →</a>
+        <a class="primary-btn" href="/login">Log in</a>
     </div>
 </section>
 
 <section class="features">
-    <h2> Everything you need to thrive </h2>
+    <h2>Everything you need to thrive</h2>
+
     <div class="feature-grid">
-        <div class = "feature-card">
-            <i data-include="users"></i>
-            <h3>Client Managemnt</h3>
+
+        <div class="feature-card">
+            <i class="icons" data-lucide="users"></i>
+            <h3>Client Management</h3>
             <p>Organize clients, track communications, and manage relationships effortlessly.</p>
         </div>
+
         <div class="feature-card">
-            <i data-lucid="check-square"></i>
-            <h3>Task Managament</h3>
+            <i class="icons" data-lucide="check-square"></i>
+            <h3>Task Management</h3>
             <p>Break projects into tasks, set due dates, and stay on top of deliverables.</p>
         </div>
-        <div class=feature-card">
-            <i data-lucide="bar-chart-3"></i>
+
+        <div class="feature-card">
+            <i class="icons" data-lucide="bar-chart-3"></i>
             <h3>Detailed Analytics</h3>
             <p>Visualize project health with charts, budgets, and time tracking.</p>
         </div>
+
+        <div class="feature-card">
+            <i class="icons" data-lucide="folder-kanban"></i>
+            <h3>Project Tracking</h3>
+            <p>Monitor budgets, deadlines, and progress across all your projects.</p>
+        </div>
+
     </div>
 </section>
 
 <section class="cta">
     <h2>Ready to streamline your workflow?</h2>
-    <p>Join thousands of freelancers already using WorkTracker</p>
+    <p>Join thousands of freelancers already using WorkTrack</p>
+
     <a class="primary-btn" href="/signup">
-        Get Started Free  →
+        Get Started Free →
     </a>
 </section>
+
 <footer>
     © 2026 WorkTracker. All rights reserved.
 </footer>
+
 <script>
     lucide.createIcons();
 </script>
+
 </body>
 </html>

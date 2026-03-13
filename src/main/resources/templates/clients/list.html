@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::section})}">
 <body>
+
+<section th:fragment="content" style="padding: 40px;">
+    <h2 style="color: #1E3A8A;">Clients</h2>
+
+    <table style="width: 100%; background: white; border-radius: 10px; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #eee; text-align: left;">
+            <th style="padding: 15px;">Name</th>
+            <th style="padding: 15px;">Email</th>
+            <th style="padding: 15px;">Actions</th>
+        </tr>
+        <tr th:each="client : ${clients}" style="border-bottom: 1px solid #eee;">
+            <td style="padding: 15px;" th:text="${client.name}">Sarah Johnson</td>
+            <td style="padding: 15px;" th:text="${client.email}">sarah@tech.com</td>
+            <td style="padding: 15px;"> ✏️ 🗑️ </td>
+        </tr>
+    </table>
+</section>
 
 </body>
 </html>
