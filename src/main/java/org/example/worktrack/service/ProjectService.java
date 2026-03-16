@@ -22,8 +22,11 @@ public class ProjectService {
         this.taskRepository = taskRepository;
     }
 
-    public List<ProjectsDTO> getAllProjects(){
-        return projectRepository.findAll().stream().map(projectMap::toDto).toList();
+    public List<ProjectsDTO> getAllProjects() {
+        String email = org.springframework.security.core.context.SecurityContextHolder
+                .getContext().getAuthentication().getName();
+
+        return projectRepository.findAllByUserEmail(email).stream().map(projectMap::toDto).toList();
     }
 
     public ProjectsDTO getProjectById(Long id){
@@ -32,11 +35,12 @@ public class ProjectService {
         return projectMap.toDto(project);
     }
 
-    public ProjectsDTO saveProject(ProjectsDTO dto){
+    public ProjectsDTO saveProject(ProjectsDTO dto) {
         Projects project = projectMap.toEntity(dto);
+        if (dto.getClient() != null && dto.getClient().getId() != null) {
+        }
         Projects saved = projectRepository.save(project);
         return projectMap.toDto(saved);
-
     }
 
     public void deleteProject(Long id){

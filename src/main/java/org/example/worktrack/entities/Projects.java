@@ -33,14 +33,7 @@ public class Projects {
     @JoinColumn(name = "client_id")
     private Clients client;
 
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Tasks> tasks = new ArrayList<>();
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "project_tasks",
-//            joinColumns = @JoinColumn(name = "project_id"),
-//            inverseJoinColumns = @JoinColumn(name = "task_id")
-//    )
-//    private Set<Tasks> tasks = new HashSet<>();
 }
