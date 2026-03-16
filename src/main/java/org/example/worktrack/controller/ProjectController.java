@@ -51,6 +51,7 @@ public class ProjectController {
 
     @PostMapping("/save")
     public String saveProject(@ModelAttribute("project") ProjectsDTO projectsDTO) {
+
         projectService.saveProject(projectsDTO);
         return "redirect:/projects";
     }

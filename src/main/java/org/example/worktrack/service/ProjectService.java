@@ -60,11 +60,10 @@ public class ProjectService {
         return projectMap.toDto(project);
     }
 
-    public ProjectsDTO saveProject(ProjectsDTO dto, Long clientId){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Clients client = clientRepository.findById(clientId).orElseThrow(() -> new RuntimeException("not found"));
+    public ProjectsDTO saveProject(ProjectsDTO dto){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Projects project = projectMap.toEntity(dto);
-        String email = authentication.getName();
+        Clients client = clientRepository.findById(project.getClient().getId()).orElseThrow(() -> new RuntimeException("not found"));
         project.setClient(client);
         if (!client.getUser().getEmail().equals(email)) {
             throw new RuntimeException("Unauthorized");
