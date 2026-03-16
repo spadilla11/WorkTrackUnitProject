@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface ClientRepository extends JpaRepository<Clients, Long> {
 
-    @EntityGraph(attributePaths = "user")
-    List<Clients> findAllWithUser();
+    @EntityGraph(attributePaths = "user", type = EntityGraph.EntityGraphType.FETCH)
+    List<Clients> findAllByUserEmail(String email);
 }

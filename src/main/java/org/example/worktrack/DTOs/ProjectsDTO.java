@@ -1,4 +1,5 @@
 package org.example.worktrack.DTOs;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import org.example.worktrack.DTOs.ClientDTO;
@@ -25,6 +26,7 @@ public class ProjectsDTO {
 //    @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
+    @JsonIgnore
     private ClientDTO client;
 
     private Set<TasksDTO> tasks = new HashSet<>();

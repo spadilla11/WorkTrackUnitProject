@@ -2,6 +2,7 @@ package org.example.worktrack.service;
 
 import jakarta.transaction.Transactional;
 import org.example.worktrack.DTOs.UserDTO;
+import org.example.worktrack.DTOs.UserRegistrationDTO;
 import org.example.worktrack.entities.User;
 import org.example.worktrack.mappers.UserMap;
 import org.example.worktrack.repository.UserRepository;
@@ -25,9 +26,13 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public UserDTO register (UserDTO userDTO){
-        User user = userMap.toEntity(userDTO);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public UserDTO register (UserRegistrationDTO requestDTO){
+        User user = new User();
+        user.setFirstName(requestDTO.getFirstName());
+        user.setLastName(requestDTO.getLastName());
+        user.setEmail(requestDTO.getEmail());
+        user.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
+
         User savedUser = userRepository.save(user);
         return userMap.toDto(savedUser);
     }
@@ -49,7 +54,6 @@ public class UserService {
         User user = userRepository.findByEmail(getEmail).orElseThrow(() -> new RuntimeException("User not found"));
         user.setFirstName(firstName);
         user.setLastName(lastName);
-        user.setEmail(email);
         if (password != null && !password.isEmpty()) {
             user.setPassword(passwordEncoder.encode(password));
         }

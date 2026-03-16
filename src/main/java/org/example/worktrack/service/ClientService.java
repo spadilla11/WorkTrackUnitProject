@@ -1,5 +1,6 @@
 package org.example.worktrack.service;
 
+import jakarta.transaction.Transactional;
 import org.example.worktrack.DTOs.ClientDTO;
 import org.example.worktrack.entities.Clients;
 import org.example.worktrack.entities.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Transactional
 public class ClientService {
     private final ClientMap clientMap;
     private final ClientRepository clientRepo;
@@ -26,7 +28,8 @@ public class ClientService {
 
 
     public List<ClientDTO> getAllClients() {
-        return clientRepo.findAllWithUser()
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return clientRepo.findAllByUserEmail(email)
                 .stream()
                 .map(clientMap::toDto)
                 .toList();
@@ -43,11 +46,35 @@ public class ClientService {
     }
 
     public void deleteClient(Long id) {
-        clientRepo.deleteById(id);
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Clients client = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("not found"));
+        if (!client.getUser().getEmail().equals(email)) {
+            throw new RuntimeException("unauthorized");
+        }
+        clientRepo.delete(client);
+    }
+
+    public ClientDTO updateClient(Long id, String name, String email, String company) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email_check = authentication.getName();
+        Clients client = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("not found"));
+        if (!client.getUser().getEmail().equals(email_check)){
+            throw new RuntimeException("unauthorized");
+        }
+        client.setName(name);
+        client.setCompany(company);
+        client.setEmail(email);
+        clientRepo.save(client);
+        return clientMap.toDto(client);
     }
 
     public ClientDTO getClientById(Long id) {
-       Clients client = clientRepo.findById(id).orElse(null);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+       Clients client = clientRepo.findById(id).orElseThrow(() -> new RuntimeException("not found"));
+       if (!client.getUser().getEmail().equals(email)) {
+           throw new RuntimeException("not authorized");
+       }
        return clientMap.toDto(client);
     }
 }
