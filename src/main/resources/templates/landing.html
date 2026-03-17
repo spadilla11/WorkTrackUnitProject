@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WorkTrack</title>
-    <link rel="stylesheet" href="/landing.css">
+    <link rel="stylesheet" th:href="@{/css/landing.css}">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -16,6 +16,9 @@
         <a class="primary-btn" href="/signup">Get Started</a>
     </div>
 </nav>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
 
 <section class="hero">
     <div class="tag">

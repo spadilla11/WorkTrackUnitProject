@@ -1,8 +1,11 @@
 package org.example.worktrack.controller;
 
 import org.example.worktrack.DTOs.UserDTO;
+import org.example.worktrack.DTOs.UserRegistrationDTO;
+import org.example.worktrack.entities.User;
 import org.example.worktrack.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +20,13 @@ public class AuthController {
     }
 
     @GetMapping("/signup")
-    public String signupPage(){
+    public String signupPage(Model model){
+        model.addAttribute("userDTO", new UserDTO());
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String register(@ModelAttribute UserDTO userDTO) {
+    public String register(@ModelAttribute("userDTO") UserDTO userDTO) {
         userService.register(userDTO);
         return "redirect:/login";
     }

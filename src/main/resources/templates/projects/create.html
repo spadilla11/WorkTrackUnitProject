@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WorkTrack - New Project</title>
+    <link rel="stylesheet" th:href="@{/css/create-form.css}">
 </head>
 <body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+
+<div class="form-container">
+    <div class="form-card">
+        <h2>Create New Projects</h2>
+        <form th:action="@{/projects/save}" th:object="${project}" method="post">
+
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <div class="field-group">
+                <label>Title</label>
+                <input type="text" th:field="*{title}" placeholder="e.g. Rust Project" required>
+            </div>
+
+            <div class="field-group">
+                <label>Description</label>
+                <input type="text" th:field="*{description}" placeholder="Build a in depth ai scanner..." required>
+            </div>
+
+            <div class="field-group">
+                <label>Starting Date</label>
+                <input type="date" th:field="*{startTime}">
+            </div>
+
+            <div class="field-group">
+                <label>Due Date</label>
+                <input type="date" th:field="*{deadLine}">
+            </div>
+
+            <div class="field-group">
+                <label>Total Budget</label>
+                <input type="text" th:field="*{totalBudget}" placeholder="25000">
+            </div>
+
+            <div class="field-group">
+                <label>Budget Used</label>
+                <input type="text" th:field="*{moneyUsed}" placeholder="5000">
+            </div>
+
+            <div class="field-group">
+                <select name="status" th:field="*{status}">
+                    <option th:each="stat : ${T(org.example.worktrack.enums.ProjectStatus).values()}"
+                            th:value="${stat}"
+                            th:text="${stat.displayName}">
+
+                    </option>
+                </select>
+            </div>
+
+            <div class="field-group">
+                <select th:field="*{clientId}">
+                    <option th:each="client : ${clients}"
+                            th:value="${client.id}"
+                            th:text="${client.name}">
+                    </option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Save project </button>
+                <a th:href="@{/projects/list}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

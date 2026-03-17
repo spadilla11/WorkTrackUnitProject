@@ -7,10 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {ClientMap.class})
 public interface UserMap {
-
     UserDTO toDto(User user);
-
-    @Mapping(target = "password", ignore = true)
-    User toEntity(UserDTO userDTO);
-
+    User toEntity(UserDTO userDTO); // Removed the @Mapping ignore
 }

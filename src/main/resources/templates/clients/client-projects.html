@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Clients</title>
 </head>
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<p>this will be the edit for projects</p>
+<div th:each="project : ${client.projects}">
+    <p th:text="${project.totalBudget}">Test</p>
+</div>
+
 </body>
 </html>

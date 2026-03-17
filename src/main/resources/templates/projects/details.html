@@ -1,10 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowDesk - Project Details</title>
+    <link rel="stylesheet" th:href="@{/css/details.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+    <header class="project-header">
+        <div class="header-left">
+            <a href="#" class="back-link">← Back to Sarah Johnson's Projects</a>
+            <h1 th:text="${project.title}"></h1>
+            <p th:text="${'Client: ' + client.name + ' (' + client.company + ')'}"></p>
+
+        </div>
+        <div class="header-right">
+            <span th:text="${project.status}" class="status-badge"></span>
+        </div>
+    </header>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="icon-box blue-icon">$</div>
+            <div>
+                <p class="stat-label">Budget</p>
+                <p th:text="${project.totalBudget}" class="stat-value"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">📅</div>
+            <div>
+                <p class="stat-label">Deadline</p>
+                <p class="stat-value" th:text="${project.deadLine}"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">🕒</div>
+            <div>
+                <p class="stat-label">Task</p>
+                <p class="stat-value" th:text="${project.tasks.size()}"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">✅</div>
+            <div>
+                <p class="stat-label">Progress</p>
+                <p class="stat-value">10%</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-card description-section">
+        <h3>Description</h3>
+        <p th:text="${project.description}"></p>
+    </section>
+
+    <section class="content-card">
+        <div class="progress-header">
+            <h3>Overall Progress</h3>
+            <span class="progress-percentage">10%</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-fill" style="width: 10%;"></div>
+        </div>
+    </section>
+
+    <section class="charts-grid">
+        <div class="content-card">
+            <h3>Task Breakdown</h3>
+            <div class="chart-placeholder">
+                <svg width="120" height="120" viewBox="0 0 42 42">
+                    <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#e2e8f0" stroke-width="6"></circle>
+                    <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#3b82f6" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="25"></circle>
+                </svg>
+                <div class="chart-legend">
+                    <span class="legend-item"><i class="dot green"></i> Completed</span>
+                    <span class="legend-item"><i class="dot blue"></i> In Progress</span>
+                    <span class="legend-item"><i class="dot gray"></i> Pending</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Budget Allocation</h3>
+            <div class="chart-placeholder bar-chart">
+                <div class="bar-group">
+                    <div class="bar spent" style="height: 20%;"></div>
+                    <span>Spent</span>
+                </div>
+                <div class="bar-group">
+                    <div class="bar remaining" style="height: 80%;"></div>
+                    <span>Remaining</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Weekly Hours</h3>
+            <div class="chart-placeholder">
+                <svg viewBox="0 0 200 100" class="line-chart-svg">
+                    <polyline fill="none" stroke="#3b82f6" stroke-width="2" points="0,80 40,40 80,60 120,20 160,90" />
+                </svg>
+                <div class="chart-labels">
+                    <span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-card">
+        <h3>Tasks</h3>
+        <div th:each="task : ${project.tasks}">
+            <div class="task-item">
+                <div class="task-left">
+                    <span class="circle-icon"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+                <span class="task-date" th:text="${task.dueDate}"></span>
+                <span th:text="${task.completed}"></span>
+            </div>
+        </div>
+    </section>
+</main>
 
 </body>
 </html>

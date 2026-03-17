@@ -6,7 +6,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface TaskMap {
-    @Mapping(target = "project", ignore = true)
     TasksDTO toDto(Tasks tasks);
     Tasks toEntity(TasksDTO tasksDTO);
 }

@@ -1,6 +1,5 @@
 package org.example.worktrack.DTOs;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Getter

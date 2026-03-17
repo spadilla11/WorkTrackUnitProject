@@ -1,5 +1,4 @@
 package org.example.worktrack.controller;
-
 import org.example.worktrack.DTOs.TasksDTO;
 import org.example.worktrack.DTOs.ProjectsDTO;
 import org.example.worktrack.service.TaskService;
@@ -14,6 +13,7 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
+
     private final TaskService taskService;
     private final ProjectService projectService;
 
@@ -22,7 +22,7 @@ public class TaskController {
         this.projectService = projectService;
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public String listAllTasks(Model model) {
         List<TasksDTO> tasks = taskService.getAllTasks();
         model.addAttribute("tasks", tasks);
@@ -49,15 +49,15 @@ public class TaskController {
     }
 
     @PostMapping("/save")
-    public String saveOrUpdateTask(@ModelAttribute("task") TasksDTO tasksDTO, @RequestParam Long projectId) {
+    public String saveTask(@ModelAttribute("task") TasksDTO tasksDTO, @RequestParam Long projectId) {
         tasksDTO.setProject(projectService.getProjectById(projectId));
         taskService.saveTask(tasksDTO);
-        return "redirect:/projects/" + projectId;
+        return "redirect:tasks/list" + projectId;
     }
 
     @PostMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id, @RequestParam Long projectId) {
         taskService.deleteTask(id);
-        return "redirect:/projects/" + projectId;
+        return "redirect:task/list" + projectId;
     }
 }

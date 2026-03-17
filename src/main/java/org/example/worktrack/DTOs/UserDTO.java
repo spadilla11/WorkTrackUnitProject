@@ -1,8 +1,5 @@
 package org.example.worktrack.DTOs;
-
-
 import lombok.*;
-
 import java.util.List;
 
 
@@ -16,8 +13,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
-
-
+    private String password;
     private List<ClientDTO> clients;
 
 }

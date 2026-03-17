@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkTrack - Clients - Projects</title>
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div class="" >
+        <h2 >Clients</h2>
+        <a th:href="@{/projects/new}">+ New Project</a>
+    </div>
+
+    <table class="client-table">
+        <thead class="table-header">
+        <tr>
+            <th>Projects</th>
+            <th>Client</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}" class="client-row">
+            <td>
+                <strong th:text="${project.status}" >Status</strong>
+                <span th:text="${project.title}" >Title</span>
+                <br>
+                <span th:text="${project.description}">Description</span>
+                <span th:text="${project.totalBudget}">Budget Limit</span>
+                <span th:text="${project.startTime}">Starts:</span>
+                <span th:text="${project.deadLine}">Due:</span>
+            </td>
+
+            <td>
+                <a th:href="@{/projects/details/{id}(id=${project.id})}">details</a>
+                <a th:href="@{/projects/edit/{id}(id=${project.id})}" >✏️</a>
+
+                <form th:action="@{/projects/delete/{id}(id=${project.id})}" method="post" >
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button type="submit" >🗑️</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
