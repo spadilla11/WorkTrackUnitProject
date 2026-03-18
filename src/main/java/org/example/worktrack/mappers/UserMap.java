@@ -10,7 +10,6 @@ public interface UserMap {
 
     UserDTO toDto(User user);
 
-    @Mapping(target = "password", ignore = true)
     User toEntity(UserDTO userDTO);
 
 }
