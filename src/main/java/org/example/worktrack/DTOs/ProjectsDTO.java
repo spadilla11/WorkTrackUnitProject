@@ -26,8 +26,8 @@ public class ProjectsDTO {
 //    @Enumerated(EnumType.STRING)
     private ProjectStatus status;
 
-    @JsonIgnore
-    private ClientDTO client;
+
+    private Long clientId;
 
     private Set<TasksDTO> tasks = new HashSet<>();
 }

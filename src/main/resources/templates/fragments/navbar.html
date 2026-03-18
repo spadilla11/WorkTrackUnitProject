@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar ">
+    <a class="navbar-brand" href="/">WorkTrack</a>
+    <div class="nav-bar-div">
+        <ul class="navbar-ul">
+            <li class="nav-item">
+                <a href="/clients/home">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="/projects/list">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a href="/tasks/list">Tasks</a>
+            </li>
+            <li class="nav-item">
+                <a href="/login?logout">↳Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+</body>
+</html>

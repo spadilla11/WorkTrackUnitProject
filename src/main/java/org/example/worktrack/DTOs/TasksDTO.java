@@ -1,6 +1,5 @@
 package org.example.worktrack.DTOs;
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Getter
@@ -14,5 +13,5 @@ public class TasksDTO {
     private LocalDate dueDate;
     private boolean completed;
 
-    private ProjectsDTO project;
+    private Long projectId;
 }

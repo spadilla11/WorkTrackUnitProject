@@ -1,10 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowDesk - Project Details</title>
+    <link rel="stylesheet" th:href="@{/css/details.css}">
+    <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 <body>
 
+<div th:replace="fragments/navbar :: navbar"></div>
+<main class="container">
+    <header class="project-header">
+        <div class="header-left">
+            <a th:href="@{/clients/CLprojects/{id}(id = ${client.id})}" class="back-link" th:text="${'←' + 'Back to ' + client.name + ' (' + client.company + ')'}"></a>
+            <h1 th:text="${project.title}"></h1>
+            <p th:text="${'Client: ' + client.name + ' (' + client.company + ')'}"></p>
+
+        </div>
+        <div class="header-right">
+            <span th:text="${project.status}" class="status-badge"></span>
+        </div>
+    </header>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="icon-box blue-icon">$</div>
+            <div>
+                <p class="stat-label">Budget</p>
+                <p th:text="${#numbers.formatCurrency(project.totalBudget)}" class="stat-value"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">📅</div>
+            <div>
+                <p class="stat-label">Deadline</p>
+                <p class="stat-value" th:text="${project.deadLine}"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">🕒</div>
+            <div>
+                <p class="stat-label">Task</p>
+                <p class="stat-value" th:text="${project.tasks.size()}"></p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="icon-box blue-icon">✅</div>
+            <div>
+                <p class="stat-label">Progress</p>
+                <p class="stat-value" th:text="${progressPercent + '%'}"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-card description-section">
+        <h3>Description</h3>
+        <p th:text="${project.description}"></p>
+    </section>
+
+    <section class="content-card">
+        <div class="progress-header">
+            <h3>Overall Progress</h3>
+            <span class="progress-percentage" th:text="${progressPercent + '%'}"></span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-fill" style="'width: ' + ${progressPercent} + '%;'"></div>
+        </div>
+    </section>
+
+    <section class="charts-grid">
+        <div class="content-card">
+            <h3>Task Breakdown</h3>
+            <div th:if="${!#lists.isEmpty(project.tasks)}" id="taskDonutChart"></div>
+
+            <div th:if="${#lists.isEmpty(project.tasks)}" class="empty-chart-message">
+                <p>No task data available.</p>
+                <a th:href="@{/tasks/new/{id}(id=${project.id})}" class="text-link">Create your first task</a>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h3>Budget Allocation</h3>
+            <div id="budgetBarChart"></div>
+        </div>
+
+        <div class="content-card">
+            <h3>Weekly Hours</h3>
+            <div class="chart-placeholder">
+                <svg viewBox="0 0 200 100" class="line-chart-svg">
+                    <polyline fill="none" stroke="#3b82f6" stroke-width="2" points="0,80 40,40 80,60 120,20 160,90" />
+                </svg>
+                <div class="chart-labels">
+                    <span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-card">
+        <div class="card-header-flex">
+            <h3>Tasks</h3>
+            <a th:href="@{/tasks/new/{id}(id=${project.id})}" class="btn-primary-sm">+ Add Task</a>
+        </div>
+
+        <div th:if="${#lists.isEmpty(project.tasks)}" class="empty-list-state">
+            <p>This project doesn't have any tasks yet.</p>
+            <p class="sub-text">Break your project down into manageable steps to track progress.</p>
+        </div>
+
+        <div th:unless="${#lists.isEmpty(project.tasks)}" th:each="task : ${project.tasks}">
+            <div class="task-item">
+                <div class="task-left">
+                    <span th:class="${task.completed ? 'circle-icon completed' : 'circle-icon'}"></span>
+                    <p th:text="${task.description}"></p>
+                </div>
+                <span class="task-date" th:text="${task.dueDate}"></span>
+            </div>
+        </div>
+    </section>
+</main>
+
 </body>
+<script th:inline="javascript">
+    let TaskOptions = {
+        series: [
+            [[${completedTask}]],
+            [[${progressTask}]],
+        ],
+        chart: {
+            type: 'donut',
+            height: 220
+        },
+        colors: ['#10b981', '#3b82f6', '#d1d5db'],
+        labels: ['Completed', 'In Progress', 'Pending'],
+        plotOptions: {
+            pie: {
+                donut: {
+                    size: '75%'
+                }
+            }
+        },
+        dataLabels: {enabled: false},
+        legend: {position: 'bottom'},
+        stroke: { width: 0}
+    };
+
+    let taskChart = new ApexCharts(document.querySelector("#taskDonutChart"), TaskOptions);
+    taskChart.render();
+
+    let budgetOptions = {
+        series: [{
+            name: 'Amount',
+            data: [
+                [[${project.moneyUsed}]],
+                [[${remainingBudget}]]
+            ]
+        }],
+        chart: {
+            type: 'bar',
+            height: 200,
+            toolbar: {show: false}
+        },
+        colors: ['#3b82f6'],
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                columnWidth: '50%',
+            }
+        },
+        dataLabels: {enabled: false},
+        xaxis: {
+            categories: ['Spent', 'Remaining'],
+            axisBorder: {show: false},
+            axisTicks: {show: false}
+        },
+        grid: {
+            borderColor: '#f1f1f1',
+            xaxis: {lines: {show: false}}
+        },
+        yaxis: {
+            min: 0,
+            max: [[${project.totalBudget}]],
+            tickAmount: 4,
+            labels: {
+                formatter: (val) => "$" + val
+            }
+        }
+    };
+
+    let budgetChart = new ApexCharts(document.querySelector("#budgetBarChart"), budgetOptions);
+    budgetChart.render();
+</script>
 </html>

@@ -47,7 +47,7 @@ public class TaskService {
 
     public TasksDTO saveTask(TasksDTO dto) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Projects project = projectRepo.findById(dto.getProject().getId()).orElseThrow(() -> new RuntimeException("not found"));
+        Projects project = projectRepo.findById(dto.getProjectId()).orElseThrow(() -> new RuntimeException("not found"));
         if (!project.getClient().getUser().getEmail().equals(email)) {
             throw new RuntimeException("You don't own this project ");
         }

@@ -63,7 +63,7 @@ public class ProjectService {
     public ProjectsDTO saveProject(ProjectsDTO dto){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Projects project = projectMap.toEntity(dto);
-        Clients client = clientRepository.findById(project.getClient().getId()).orElseThrow(() -> new RuntimeException("not found"));
+        Clients client = clientRepository.findById(dto.getClientId()).orElseThrow(() -> new RuntimeException("not found"));
         project.setClient(client);
         if (!client.getUser().getEmail().equals(email)) {
             throw new RuntimeException("Unauthorized");
@@ -71,7 +71,7 @@ public class ProjectService {
         return projectMap.toDto(projectRepository.save(project));
 
     }
-
+//the details  working it was that thing that we took out in the mappper we needed that and i added back and is wokring now
     public ProjectsDTO updateProject(Long id,ProjectsDTO dto ) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Projects project = projectRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));

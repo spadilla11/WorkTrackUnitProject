@@ -7,9 +7,13 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", uses = {ClientMap.class})
 public interface UserMap {
-
     UserDTO toDto(User user);
+    User toEntity(UserDTO userDTO); // Removed the @Mapping ignore
 
-    User toEntity(UserDTO userDTO);
-
+    default User clientFromId(Long id) {
+        if (id == null) return null;
+        User u = new User();
+        u.setId(id);
+        return u;
+    }
 }

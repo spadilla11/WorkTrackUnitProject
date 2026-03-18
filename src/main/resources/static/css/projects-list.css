@@ -1,0 +1,71 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f5f7fb;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-new {
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.client-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.client-table th {
+    text-align: left;
+    padding: 15px 20px;
+    background: #fcfcfc;
+    color: #64748b;
+    font-size: 13px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.client-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+.bold-text {
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.status-badge {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.actions a {
+    text-decoration: none;
+    margin-right: 10px;
+}

@@ -3,25 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
 </head>
 
-<body>
+<body class="login-body">
+<div class="login-form">
+    <form class="form" th:action="@{/login}" method="post">
+        <p class="title">Login </p>
+        <label>
+            <input name="username" required="" placeholder="" type="email" class="input">
+            <span>Email</span>
+        </label>
 
-<h2>Login</h2>
-<form class="form">
-    <label>
-        <input required="" placeholder="" type="" class="input">
-        <span>Username</span>
-    </label>
+        <label>
+            <input name="password" required="" placeholder="" type="password" class="input">
+            <span>Password</span>
+        </label>
 
-    <label>
-        <input required="" placeholder="" type="password" class="input">
-        <span>Password</span>
-    </label>
-
-    <button class="submit">Submit</button>
-    <p class="signin">Don't have an acount ? <a href="#">Sign</a> </p>
-</form>
+        <button type="submit" class="submit">Submit</button>
+        <p class="signin">Don't have an acount ? <a href="/signup">Sign</a> </p>
+        <div style="margin-bottom: 15px;">
+            <input type="checkbox" name="remember-me" id="remember-me">
+            <label for="remember-me" style="color: #666; font-size: 0.9em;">Remember Me</label>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

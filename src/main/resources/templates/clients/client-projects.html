@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
+    <link rel="stylesheet" th:href="@{/css/client-projects.css}">
+
+</head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container main-content">
+
+    <a th:href="@{/clients/home}" class="back-link">← Back to Dashboard</a>
+
+    <div class="profile-card">
+        <div class="client-header">
+            <h1 th:text="${client.name}">Client Name</h1>
+            <p th:text="${client.email}">client@email.com</p>
+            <p th:text="${client.company}">client company</p>
+        </div>
+
+        <div class="total-budget-box" th:each="project : ${client.projects}">
+            <span class="label">Total Budget</span>
+            <h2 class="amount" th:text="${'$' + project.totalBudget}">$27,000</h2>
+        </div>
+
+    </div>
+
+    <div class="section-header">
+        <h2 th:text="'Projects (' + ${#lists.size(client.projects)} + ')'">Projects (2)</h2>
+        <a th:href="@{/projects/new}" class="btn-add">+ Add Project</a>
+    </div>
+
+    <div class="project-grid">
+        <div th:each="project : ${client.projects}" class="project-card">
+            <div class="card-header">
+                <h3 th:text="${project.title}">Project Title</h3>
+                <span class="status-badge" th:text="${project.status}">Status</span>
+            </div>
+
+            <div class="card-body">
+                <p><strong>Budget:</strong> <span th:text="${project.totalBudget}">$0</span></p>
+                <p><strong>Deadline:</strong> <span th:text="${project.deadLine}">Due Date</span></p>
+            </div>
+
+            <div class="card-footer">
+                <a th:href="@{/projects/details/{id}(id=${project.id})}" class="view-details">View Details →</a>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${#lists.isEmpty(client.projects)}" class="empty-state">
+        <p>This client currently has no projects.</p>
+    </div>
+</div>
+
+</body>
+</html>

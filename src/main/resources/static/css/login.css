@@ -1,17 +1,37 @@
+.login-body{
+    background-color: #8EA9C8;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+}
+
 .form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 100%;
     max-width: 350px;
-    background-color: #fff;
-    padding: 20px;
+    background-color: #D7EBFF;
+    padding-left: 50px;
+    padding-right: 70px;
+    padding-bottom: 50px;
+    padding-top: 50px;
     border-radius: 20px;
     position: relative;
+    border-color: #8EA9C8;
+    border-width: 10px 10px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .title {
     font-size: 28px;
-    color: royalblue;
+    color: #3A4B5C;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -27,13 +47,13 @@
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: #3A4B5C;
 }
 
 .title::before {
     width: 18px;
     height: 18px;
-    background-color: royalblue;
+    background-color: #3A4B5C;
 }
 
 .title::after {
@@ -52,11 +72,11 @@
 }
 
 .signin a {
-    color: royalblue;
+    color: #3A4B5C;;
 }
 
 .signin a:hover {
-    text-decoration: underline royalblue;
+    text-decoration: underline #8EA9C8;
 }
 
 .flex {
@@ -71,7 +91,7 @@
 
 .form label .input {
     width: 100%;
-    padding: 10px 10px 20px 10px;
+    padding: 14px 14px 24px 14px;
     outline: 0;
     border: 1px solid rgba(105, 105, 105, 0.397);
     border-radius: 10px;
@@ -81,7 +101,7 @@
     position: absolute;
     left: 10px;
     top: 15px;
-    color: grey;
+    color: #F6F3EF;
     font-size: 0.9em;
     cursor: text;
     transition: 0.3s ease;
@@ -105,16 +125,18 @@
 .submit {
     border: none;
     outline: none;
-    background-color: royalblue;
+    background-color:  #3A4B5C;
     padding: 10px;
     border-radius: 10px;
     color: #fff;
     font-size: 16px;
     transform: .3s ease;
+    width: 108%;
 }
 
 .submit:hover {
-    background-color: rgb(56, 90, 194);
+    background-color: #F6F3EF;
+    color:  #3A4B5C;
 }
 
 @keyframes pulse {
