@@ -1,0 +1,103 @@
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f5f7fb;
+    margin: 0;
+    padding: 0;
+    color: #1f2937;
+}
+
+.back-link {
+    display: inline-block;
+    color: #3b82f6;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: opacity 0.2s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: sans-serif;
+}
+
+.profile-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+.total-budget-box {
+    text-align: right;
+}
+
+.total-budget-box .label {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+.total-budget-box .amount {
+    color: #1e3a8a;
+    font-size: 2rem;
+    margin: 0; }
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.btn-add {
+    background: #3b82f6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.status-badge {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.view-details {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 15px;
+}

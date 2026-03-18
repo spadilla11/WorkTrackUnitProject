@@ -71,7 +71,7 @@ public class ProjectService {
         return projectMap.toDto(projectRepository.save(project));
 
     }
-
+//the details  working it was that thing that we took out in the mappper we needed that and i added back and is wokring now
     public ProjectsDTO updateProject(Long id,ProjectsDTO dto ) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Projects project = projectRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));

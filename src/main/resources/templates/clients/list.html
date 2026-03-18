@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>WorkTrack - Clients</title>
-    <link rel="stylesheet" th:href="@{/css/client-list.css}">
-
+    <link rel="stylesheet" th:href="@{/css/clients-list.css}">
+    <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
 </head>
 <body>
 
@@ -14,17 +14,17 @@
 
     <div class="dashboard">
         <div class="dashboard-box">
-            <h2>Total Clients</h2>
+            <h2>Total Clients 👤</h2>
             <p th:text="${totalClients}">0</p>
         </div>
 
         <div>
-            <h2>Active Projects</h2>
+            <h2>Active Projects 📂</h2>
             <p th:text="${totalProjects}">0</p>
         </div>
 
         <div class="dashboard-box">
-            <h2>Pending Task</h2>
+            <h2>Pending Tasks ☑</h2>
             <p th:text="${totalTasks}">0</p>
         </div>
     </div>
@@ -37,27 +37,32 @@
     <table class="client-table">
         <thead class="table-header">
         <tr>
-            <th>Client Details</th>
-            <th>Projects</th>
-            <th>Actions</th>
+            <th>Name </th>
+            <th>Email</th>
+            <th>Company</th>
+            <th>Action</th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="client : ${clients}" class="client-row">
             <td>
-                <a th:href="@{/CLprojects/{id}(id=${client.id})}" class="client-link">
+                <a th:href="@{/clients/CLprojects/{id}(id=${client.id})}" class="client-link">
                     <strong th:text="${client.name}">Sarah Johnson</strong>
                 </a>
                 <br>
-                <span th:text="${client.email}">sarah.j@techcorp.com</span>
-                <br>
-                <span th:text="${client.company}">TechCorp</span>
+            </td>
+
+            <td>
+                <a th:href="'mailto:' + ${client.email}" th:text="${client.email}" class="email-link">
+                    email@example.com
+                </a>
             </td>
 
             <td th:text="${client.company}">Company</td>
 
             <td>
-                <a th:href="@{/clients/edit/{id}(id=${client.id})}">✏️</a>
+                <a th:href="@{/clients/edit/{id}(id=${client.id})}" >✎</a>
                 <form th:action="@{/clients/delete/{id}(id=${client.id})}" method="post"
                       onsubmit="return confirm('Are you sure you want to delete this client?');"
                       style="display: inline;">

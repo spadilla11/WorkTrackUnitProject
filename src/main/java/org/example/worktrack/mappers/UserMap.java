@@ -9,4 +9,11 @@ import org.mapstruct.Mapping;
 public interface UserMap {
     UserDTO toDto(User user);
     User toEntity(UserDTO userDTO); // Removed the @Mapping ignore
+
+    default User clientFromId(Long id) {
+        if (id == null) return null;
+        User u = new User();
+        u.setId(id);
+        return u;
+    }
 }

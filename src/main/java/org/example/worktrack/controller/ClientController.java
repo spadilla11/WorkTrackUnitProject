@@ -23,32 +23,22 @@ public class ClientController {
         this.projectService = projectService;
     }
 
+
     @GetMapping("/CLprojects/{id}")
     public String ClientProjects(@PathVariable Long id, Model model) {
         ClientDTO client = clientService.getClientById(id);
+        client.setProjects(projectService.getProjectFromClient(id));
+
         model.addAttribute("client", client);
+        addGlobalStats(model);
+
         return "clients/client-projects";
     }
 
     @GetMapping("/home")
     public String listClients(Model model) {
-        List<ClientDTO> clients = clientService.getAllClients();
-        for (ClientDTO client: clients) {
-            client.setProjects(projectService.getProjectFromClient(client.getId()));
-        }
-
-        int projectsCount = 0;
-        for (ClientDTO c : clients) {
-            if (c.getProjects() != null) {
-                projectsCount += c.getProjects().size();
-            }
-        }
-
-        model.addAttribute("totalProjects", projectsCount);
-        model.addAttribute("clients", clients);
-        model.addAttribute("newClient", new ClientDTO());
-        model.addAttribute("totalClients", clients.size());
-        model.addAttribute("totalTasks", 0);
+        model.addAttribute("clients", clientService.getAllClients());
+        addGlobalStats(model);
         return "clients/list";
     }
 
@@ -82,5 +72,25 @@ public class ClientController {
         clientDTO.setId(id);
         clientService.addClient(clientDTO);
         return "redirect:/clients/home";
+    }
+
+    private void addGlobalStats(Model model) {
+        List<ClientDTO> clients = clientService.getAllClients();
+        int projectsCount = 0;
+
+        if (clients != null) {
+            for (ClientDTO c : clients) {
+                List<ProjectsDTO> projects = projectService.getProjectFromClient(c.getId());
+                if (projects != null) {
+                    projectsCount += projects.size();
+                }
+            }
+            model.addAttribute("totalClients", clients.size());
+        } else {
+            model.addAttribute("totalClients", 0);
+        }
+
+        model.addAttribute("totalProjects", projectsCount);
+        model.addAttribute("totalTasks", 0);
     }
 }

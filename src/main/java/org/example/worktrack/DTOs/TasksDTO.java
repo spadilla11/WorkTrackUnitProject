@@ -13,5 +13,5 @@ public class TasksDTO {
     private LocalDate dueDate;
     private boolean completed;
 
-    private ProjectsDTO project;
+    private Long projectId;
 }
