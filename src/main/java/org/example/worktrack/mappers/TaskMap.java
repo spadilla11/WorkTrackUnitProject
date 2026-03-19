@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface TaskMap {
 
     @Mapping(source = "project.id", target = "projectId")
+    @Mapping(source = "project.title", target="projectName")
     TasksDTO toDto(Tasks task);
 
     @Mapping(source = "projectId", target = "project.id")

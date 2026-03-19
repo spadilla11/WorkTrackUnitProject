@@ -28,6 +28,7 @@ public class ProjectsDTO {
 
 
     private Long clientId;
+    private String clientName;
 
     private Set<TasksDTO> tasks = new HashSet<>();
 }

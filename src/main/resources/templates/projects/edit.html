@@ -1,14 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WorkTrack - New Client</title>
+    <link rel="stylesheet" th:href="@{/css/create-form.css}">
     <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
 </head>
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<p>this will be the edit for projects</p>
+
+<div class="form-container">
+    <div class="form-card">
+        <h2 th:text="${project.id != null} ? 'Edit Project' : 'Create New Project'">Edit Project</h2>
+        <form th:action="@{/projects/save}" th:object="${project}" method="post" >
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <div class="field-group">
+                <label>Project Name</label>
+                <input type="text" th:field="*{title}" placeholder="e.g. Rust Project" required>
+            </div>
+
+            <div class="field-group">
+                <label>Description</label>
+                <input type="text" th:field="*{description}" placeholder="Rust Project requires AI integration..." required>
+            </div>
+
+            <div class="field-group">
+                <label>Start Time</label>
+                <input type="date" th:field="*{startTime}" >
+            </div>
+
+            <div class="field-group">
+                <label>Dead Line</label>
+                <input type="date" th:field="*{deadLine}" >
+            </div>
+
+            <div class="field-group">
+                <label>Start Time</label>
+                <input type="text" th:field="*{totalBudget}" placeholder="5000">
+            </div>
+
+            <div class="field-group">
+                <label>Start Time</label>
+                <input type="text" th:field="*{moneyUsed}" placeholder="1000">
+            </div>
+
+
+            <div class="btn-group">
+                <button type="submit" class="btn-save">Update Project</button>
+                <a th:href="@{/projects/list}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
