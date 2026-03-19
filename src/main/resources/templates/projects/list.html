@@ -51,7 +51,7 @@
                     </div>
                 </td>
                 <td>
-                    <span class="budget-text" th:text="${'$' + project.totalBudget}">$65,000</span>
+                    <span class="budget-text" th:text="${'$' + #numbers.formatDecimal(project.totalBudget, 1, 'COMMA', 2, 'POINT')}">$65,000</span>
                 </td>
                 <td>
                     <div class="deadline-tag">
