@@ -1,5 +1,6 @@
 package org.example.worktrack.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,7 @@ public class Tasks {
     private LocalDate dueDate;
     private boolean completed;
 
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id")
     private Projects project;

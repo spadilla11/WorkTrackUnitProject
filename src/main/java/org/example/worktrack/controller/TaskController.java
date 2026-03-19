@@ -1,13 +1,18 @@
 package org.example.worktrack.controller;
+import org.example.worktrack.DTOs.ClientDTO;
 import org.example.worktrack.DTOs.TasksDTO;
 import org.example.worktrack.DTOs.ProjectsDTO;
+import org.example.worktrack.entities.Tasks;
 import org.example.worktrack.service.TaskService;
 import org.example.worktrack.service.ProjectService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/tasks")
@@ -57,8 +62,42 @@ public class TaskController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteTask(@PathVariable Long id, @RequestParam Long projectId) {
+    public String deleteTask(@PathVariable Long id) {
+        TasksDTO task = taskService.getTaskById(id);
+        Long projectId = task.getProjectId();
         taskService.deleteTask(id);
-        return "redirect:task/list" + projectId;
+        return "redirect:/projects/details/" + projectId;
+    }
+
+    @PostMapping("/toggle/{id}")
+    @ResponseBody
+    public Map<String, Object> toggleTask(@PathVariable Long id) {
+        taskService.toggleCompletion(id);
+
+        TasksDTO currentTask = taskService.getTaskById(id);
+        ProjectsDTO project = projectService.getProjectById(currentTask.getProjectId());
+
+        int completedCount = 0;
+        int progressCount = 0;
+
+        for (TasksDTO t : project.getTasks()) {
+            if (t.isCompleted()) {
+                completedCount++;
+            } else {
+                progressCount++;
+            }
+        }
+
+        int progressPercent = 0;
+        if (!project.getTasks().isEmpty()) {
+            progressPercent = (int) ((double) completedCount / project.getTasks().size() * 100);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("completedCount", completedCount);
+        response.put("inProgressCount", progressCount);
+        response.put("progressPercent", progressPercent);
+
+        return response;
     }
 }

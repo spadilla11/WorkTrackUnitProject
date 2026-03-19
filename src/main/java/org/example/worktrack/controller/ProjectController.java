@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/projects")
@@ -30,6 +32,8 @@ public class ProjectController {
     @GetMapping("/list")
     public String listAllProjects(Model model) {
         List<ProjectsDTO> projects = projectService.getAllProjects();
+        ClientDTO client = clientService.getClientById(projects.getFirst().getClientId());
+        model.addAttribute("client", client);
         model.addAttribute("projects", projects);
         model.addAttribute("newProject", new ProjectsDTO());
         return "projects/list";
@@ -88,6 +92,20 @@ public class ProjectController {
         return "redirect:/projects/list";
     }
 
+    @PostMapping("/update/{id}")
+    public String updateProject(@PathVariable Long id, @RequestParam String title, @RequestParam Float totalBudget, @RequestParam String description) {
+
+        ProjectsDTO project = projectService.getProjectById(id);
+
+        project.setTitle(title);
+        project.setTotalBudget(totalBudget);
+        project.setDescription(description);
+
+        projectService.saveProject(project);
+
+        return "redirect:/projects/details/" + id;
+    }
+
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         model.addAttribute("project", projectService.getProjectById(id));
@@ -96,8 +114,23 @@ public class ProjectController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String deleteProject(@PathVariable Long id) {
         projectRepo.delete(projectRepo.findById(id).orElseThrow(() -> new RuntimeException("Could not be found")));
         return "redirect:/projects/list";
+    }
+
+    @PostMapping("/{id}/add-expense")
+    @ResponseBody
+    public Map<String, Object> addExpense(@PathVariable Long id, @RequestParam Float amount) {
+        ProjectsDTO project = projectService.getProjectById(id);
+
+        float newTotalSpent = (project.getMoneyUsed() != null ? project.getMoneyUsed() : 0) + amount;
+        project.setMoneyUsed(newTotalSpent);
+        projectService.saveProject(project);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("spent", newTotalSpent);
+        response.put("remaining", project.getTotalBudget() - newTotalSpent);
+        return response;
     }
 }
