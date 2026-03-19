@@ -1,9 +1,7 @@
 package org.example.worktrack.entities;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.worktrack.enums.ProjectStatus;
-
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;

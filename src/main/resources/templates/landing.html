@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>WorkTrack</title>
+    <title>WorkTrack | Manage Projects, Delight Clients</title>
     <link rel="stylesheet" th:href="@{/css/landing.css}">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -10,7 +10,6 @@
 
 <nav>
     <span><b>WorkTrack</b></span>
-
     <div>
         <a href="/login">Log in</a>
         <a class="primary-btn" href="/signup">Get Started</a>
@@ -18,65 +17,92 @@
 </nav>
 
 <section class="hero">
-    <div class="tag">
-        <i data-lucide="zap"></i>  Built for freelancers
+    <div class="hero-content">
+        <div class="tag">
+            <i data-lucide="zap" size="14"></i> Built for freelancers
+        </div>
+        <h1>
+            Manage projects <br>
+            Delight clients.
+        </h1>
+        <p>
+            WorkTrack is the all-in-one project management tool designed for freelancers
+            who want to stay organized and deliver exceptional work.
+        </p>
+        <div class="hero-buttons">
+            <a class="primary-btn" href="/signup">Start Free →</a>
+            <a class="primary-btn" style="background: transparent; border: 1px solid #3A4B5C; color: #3A4B5C !important;" href="/login">Log in</a>
+        </div>
     </div>
 
-    <h1>
-        Manage projects <br>
-        Delight clients.
-    </h1>
-
-    <p>
-        WorkTrack is the all-in-one project management tool designed for freelancers
-        who want to stay organized and deliver exceptional work.
-    </p>
-
-    <div class="hero-buttons">
-        <a class="primary-btn" href="/signup">Start Free →</a>
-        <a class="primary-btn" href="/login">Log in</a>
+    <div class="hero-visual slide-in-right">
+        <div class="demo-window">
+            <div class="demo-header">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div style="padding: 30px;">
+                <div style="height: 12px; width: 40%; background: #D7EBFF; border-radius: 6px; margin-bottom: 25px;"></div>
+                <div class="ui-row" style="margin-bottom: 12px;"><div class="ui-circle"></div><div class="ui-line" style="width: 70%;"></div></div>
+                <div class="ui-row" style="margin-bottom: 12px;"><div class="ui-circle" style="background:#B7D2F0"></div><div class="ui-line" style="width: 50%;"></div></div>
+                <div class="ui-row"><div class="ui-circle" style="background:#8EA9C8"></div><div class="ui-line" style="width: 85%;"></div></div>
+            </div>
+        </div>
     </div>
 </section>
 
 <section class="features">
-    <h2>Everything you need to thrive</h2>
-
+    <h2 class="reveal">Everything you need to thrive</h2>
     <div class="feature-grid">
-
-        <div class="feature-card">
-            <i class="icons" data-lucide="users"></i>
+        <div class="feature-card reveal">
+            <div class="ui-card">
+                <div class="ui-row"><div class="ui-circle"></div><div class="ui-line" style="width: 60%"></div></div>
+                <div class="ui-row"><div class="ui-circle" style="background:#B7D2F0"></div><div class="ui-line" style="width: 40%"></div></div>
+                <div class="ui-row"><div class="ui-circle" style="background:#8EA9C8"></div><div class="ui-line" style="width: 75%"></div></div>
+            </div>
             <h3>Client Management</h3>
             <p>Organize clients, track communications, and manage relationships effortlessly.</p>
         </div>
 
-        <div class="feature-card">
-            <i class="icons" data-lucide="check-square"></i>
+        <div class="feature-card reveal">
+            <div class="ui-card">
+                <div class="ui-row"><i data-lucide="check-square" size="18" color="#8EA9C8"></i><div class="ui-line" style="width: 80%"></div></div>
+                <div class="ui-row"><i data-lucide="square" size="18" color="#E5E7EB"></i><div class="ui-line" style="width: 50%"></div></div>
+                <div class="ui-row"><i data-lucide="square" size="18" color="#E5E7EB"></i><div class="ui-line" style="width: 65%"></div></div>
+            </div>
             <h3>Task Management</h3>
             <p>Break projects into tasks, set due dates, and stay on top of deliverables.</p>
         </div>
 
-        <div class="feature-card">
-            <i class="icons" data-lucide="bar-chart-3"></i>
+        <div class="feature-card reveal">
+            <div class="ui-card" style="flex-direction: row; align-items: flex-end; gap: 8px;">
+                <div style="flex:1; background:#D7EBFF; height: 40%; border-radius: 4px;"></div>
+                <div style="flex:1; background:#B7D2F0; height: 80%; border-radius: 4px;"></div>
+                <div style="flex:1; background:#8EA9C8; height: 60%; border-radius: 4px;"></div>
+                <div style="flex:1; background:#3A4B5C; height: 100%; border-radius: 4px;"></div>
+            </div>
             <h3>Detailed Analytics</h3>
             <p>Visualize project health with charts, budgets, and time tracking.</p>
         </div>
 
-        <div class="feature-card">
-            <i class="icons" data-lucide="folder-kanban"></i>
+        <div class="feature-card reveal">
+            <div class="ui-card" style="justify-content: center;">
+                <div style="height: 10px; background:#E5E7EB; border-radius: 5px; width: 100%; margin-bottom: 15px;">
+                    <div style="height: 10px; background:#8EA9C8; border-radius: 5px; width: 70%;"></div>
+                </div>
+                <div style="height: 10px; background:#E5E7EB; border-radius: 5px; width: 100%;">
+                    <div style="height: 10px; background:#3A4B5C; border-radius: 5px; width: 35%;"></div>
+                </div>
+            </div>
             <h3>Project Tracking</h3>
             <p>Monitor budgets, deadlines, and progress across all your projects.</p>
         </div>
-
     </div>
 </section>
 
-<section class="cta">
+<section class="cta reveal">
     <h2>Ready to streamline your workflow?</h2>
     <p>Join thousands of freelancers already using WorkTrack</p>
-
-    <a class="primary-btn" href="/signup">
-        Get Started Free →
-    </a>
+    <a class="primary-btn" href="/signup">Get Started Free →</a>
 </section>
 
 <footer>
@@ -85,6 +111,19 @@
 
 <script>
     lucide.createIcons();
+
+    // Scroll Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .slide-in-right').forEach((el) => {
+        observer.observe(el);
+    });
 </script>
 
 </body>

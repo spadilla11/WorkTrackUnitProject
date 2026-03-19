@@ -78,6 +78,7 @@ public class ClientController {
         List<ClientDTO> clients = clientService.getAllClients();
         int projectsCount = 0;
 
+
         if (clients != null) {
             for (ClientDTO c : clients) {
                 List<ProjectsDTO> projects = projectService.getProjectFromClient(c.getId());
