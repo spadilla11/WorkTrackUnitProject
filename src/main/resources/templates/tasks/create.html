@@ -15,38 +15,38 @@
 <div class="form-container">
     <div class="form-card">
         <h2>Create New Task</h2>
-        <form th:action="@{/tasks/save-general}" th:object="${task}" method="post">
 
+        <form th:action="${projectId != null} ? @{/tasks/save/{id}(id=${projectId})} : @{/tasks/save-general}"
+              th:object="${task}"
+              method="post">
 
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
             <div class="field-group">
                 <label>Description</label>
-                <input type="text" th:field="*{description}" placeholder="description" required>
+                <input type="text" th:field="*{description}" placeholder="Task description..." required>
             </div>
 
             <div class="field-group">
                 <label>Due Date</label>
-                <input type="date" th:field="*{dueDate}" placeholder="sarah@example.com" required>
+                <input type="date" th:field="*{dueDate}" required>
             </div>
 
-            <div th:if="${projects != null}">
+            <div class="field-group" th:if="${projects != null}">
                 <label>Assign to Project</label>
                 <select th:field="*{projectId}" class="soft-select" required>
                     <option value="" disabled selected>Select a project...</option>
                     <option th:each="proj : ${projects}"
                             th:value="${proj.id}"
-                            th:text="${proj.title}">Project Name</option>
+                            th:text="${proj.title}"></option>
                 </select>
             </div>
 
-            <div th:unless="${projects != null}">
-                <input type="hidden" th:field="*{projectId}" />
-            </div>
+            <input type="hidden" th:if="${projectId != null}" name="projectId" th:value="${projectId}" />
 
-            <div class="field-group">
-                <label>Completed</label>
-                <input type="checkbox" th:field="*{completed}" placeholder="Sarah Co Inc.">
+            <div class="field-group checkbox-row">
+                <input type="checkbox" th:field="*{completed}" id="completed-check">
+                <label for="completed-check">Mark as Completed</label>
             </div>
 
             <div class="btn-group">

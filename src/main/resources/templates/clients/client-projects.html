@@ -60,7 +60,7 @@
             </div>
 
             <div class="card-body">
-                <p><strong>Budget:</strong> <span class="highlight-val" th:text="${'$' + project.totalBudget}">$65000</span></p>
+                <p><strong>Budget:</strong> <span class="highlight-val" th:text="'$' + ${#numbers.formatDecimal(project.totalBudget, 1, 'COMMA',2, 'POINT')}">$65000</span></p>
                 <p><strong>Deadline:</strong> <span class="highlight-val" th:text="${project.deadLine}">2026-05-01</span></p>
             </div>
 

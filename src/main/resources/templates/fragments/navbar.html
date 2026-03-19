@@ -24,7 +24,9 @@
             const navLinks = document.querySelectorAll('#nav-links a');
 
             navLinks.forEach(link => {
-                if (currentPath.includes(link.getAttribute('href').split('/')[1])) {
+                const currentSegment = currentPath.split('/')[1];
+                const linkSegment = link.getAttribute('href').split('/')[1];
+                if (currentSegment === linkSegment) {
                     link.classList.add('active');
                 }
             });

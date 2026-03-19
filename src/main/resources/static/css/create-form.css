@@ -89,3 +89,33 @@ input {
     border-color: #8EA9C8;
     box-shadow: 0 0 0 4px rgba(215, 235, 255, 0.5);
 }
+
+.checkbox-row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    cursor: pointer;
+}
+
+.checkbox-row label {
+    margin: 0 !important;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
