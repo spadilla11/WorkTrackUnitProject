@@ -2,57 +2,78 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>WorkTrack - Clients - Projects</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkTrack - Projects</title>
     <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" th:href="@{/css/projects-list.css}">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container">
-    <div class="header-row">
-        <h2>Projects</h2>
-        <a th:href="@{/projects/new}" class="btn-new">+ New Project</a>
+    <div class="section-header">
+        <div>
+            <h2>Project Portfolio</h2>
+            <p>Track your budget, deadlines, and project health</p>
+        </div>
+        <a th:href="@{/projects/new}" class="btn-primary">
+            <span class="material-symbols-rounded">add</span>
+            <span>New Project</span>
+        </a>
     </div>
 
-    <table class="client-table" th:if="${not #lists.isEmpty(projects)}">
-        <thead>
-        <tr>
-            <th>Project Title</th>
-            <th>Client</th>
-            <th>Budget</th>
-            <th>Deadline</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="project : ${projects}" class="client-row">
-            <td class="bold-text" th:text="${project.title}" >Title</td>
-            <td th:text="${client.name}">Client Name</td>
-            <td th:text="${'$' + project.totalBudget}">$0</td>
-            <td th:text="${project.deadLine}">Due Date</td>
-            <td>
-                <span class="status-badge" th:text="${project.status}">Status</span>
-            </td>
-            <td class="actions">
-                <a th:href="@{/projects/edit/{id}(id=${project.id})}">✏️</a>
-                <form th:action="@{/projects/delete/{id}(id=${project.id})}" method="post" style="display: inline;">
-                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                    <button type="submit" style="background:none; border:none; cursor:pointer;">🗑️</button>
-                </form>
-                <a th:href="@{/projects/details/{id}(id=${project.id})}"> View Details </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="table-container" th:if="${not #lists.isEmpty(projects)}">
+        <table class="project-table">
+            <thead>
+            <tr>
+                <th class="col-title">Project Title</th>
+                <th class="col-client">Client</th>
+                <th class="col-budget">Budget</th>
+                <th class="col-deadline">Deadline</th>
+                <th class="col-status">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}"
+                class="project-row"
+                th:onclick="|window.location.href='@{/projects/details/{id}(id=${project.id})}'|"
+                style="cursor: pointer;">
+
+                <td class="bold-text">
+                    <span th:text="${project.title}">Project Title</span>
+                </td>
+                <td>
+                    <div class="client-tag">
+                        <span class="material-symbols-rounded">person</span>
+                        <span th:text="${client.name}">Jacob Dozier</span>
+                    </div>
+                </td>
+                <td>
+                    <span class="budget-text" th:text="${'$' + project.totalBudget}">$65,000</span>
+                </td>
+                <td>
+                    <div class="deadline-tag">
+                        <span class="material-symbols-rounded">calendar_today</span>
+                        <span th:text="${project.deadLine}">2026-05-01</span>
+                    </div>
+                </td>
+                <td>
+                    <span class="status-badge" th:text="${project.status}" th:classappend="${#strings.toLowerCase(project.status)}">Planned</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div th:if="${#lists.isEmpty(projects)}" class="empty-state">
-        <div class="empty-icon">📂</div>
+        <div class="empty-icon">
+            <span class="material-symbols-rounded" style="font-size: 64px;">folder_open</span>
+        </div>
         <h3>No projects found</h3>
         <p>It looks like your workspace is empty. Create a new project to get started!</p>
+        <a th:href="@{/projects/new}" class="btn-primary" style="margin-top: 20px;">Get Started</a>
     </div>
 </div>
 

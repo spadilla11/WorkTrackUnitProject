@@ -63,6 +63,14 @@
                 cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
             });
 
+            document.addEventListener("mouseleave", () => {
+                cursor.style.opacity = "0";
+            });
+
+            document.addEventListener("mouseenter", () => {
+                cursor.style.opacity = "1";
+            });
+
             document.addEventListener("mouseover", (e) => {
 
                 const isHoverable = e.target.closest('a, button, .stat-card, .client-row, .btn-icon, .btn-primary, .nav-link, input, [role="button"], .client-directory tr');

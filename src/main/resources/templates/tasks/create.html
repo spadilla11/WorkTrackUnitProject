@@ -30,13 +30,19 @@
                 <input type="date" th:field="*{dueDate}" placeholder="sarah@example.com" required>
             </div>
 
-            <label>Assign to Project</label>
-            <select th:field="*{projectId}" class="soft-select">
-                <option value="" disabled selected>Select a project...</option>
-                <option th:each="proj : ${projects}"
-                        th:value="${proj.id}"
-                        th:text="${proj.title}">Project Name</option>
-            </select>
+            <div th:if="${projects != null}">
+                <label>Assign to Project</label>
+                <select th:field="*{projectId}" class="soft-select" required>
+                    <option value="" disabled selected>Select a project...</option>
+                    <option th:each="proj : ${projects}"
+                            th:value="${proj.id}"
+                            th:text="${proj.title}">Project Name</option>
+                </select>
+            </div>
+
+            <div th:unless="${projects != null}">
+                <input type="hidden" th:field="*{projectId}" />
+            </div>
 
             <div class="field-group">
                 <label>Completed</label>

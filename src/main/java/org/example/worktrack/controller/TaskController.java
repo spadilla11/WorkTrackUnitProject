@@ -75,11 +75,16 @@ public class TaskController {
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteTask(@PathVariable Long id) {
+    public String deleteTask_details(@PathVariable Long id) {
         TasksDTO task = taskService.getTaskById(id);
         Long projectId = task.getProjectId();
         taskService.deleteTask(id);
         return "redirect:/projects/details/" + projectId;
+    }
+
+    @PostMapping("/delete/task/{id}")
+    public void deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
     }
 
     @PostMapping("/toggle/{id}")
