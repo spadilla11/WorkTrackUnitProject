@@ -1,15 +1,14 @@
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f5f7fb;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #F6F3EF;
     margin: 0;
     padding: 0;
-    color: #1f2937;
+    color: #4A5B6C;
 }
 
-
 .main-content {
-    max-width: 1100px;
-    margin: 40px auto;
+    max-width: 1000px;
+    margin: 60px auto;
     padding: 0 20px;
 }
 
@@ -17,91 +16,117 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .page-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 800;
-    color: #1e293b;
+    color: #3A4B5C;
+    letter-spacing: -0.5px;
 }
 
 .add-task-btn {
-    background-color: #3b82f6;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
+    background-color: #D7EBFF;
+    color: #3A4B5C;
+    padding: 12px 24px;
+    border-radius: 12px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
-    transition: background 0.2s;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 10px rgba(183, 210, 240, 0.3);
+}
+
+.add-task-btn:hover {
+    background-color: #B7D2F0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(183, 210, 240, 0.5);
 }
 
 .client-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 15px;
 }
 
 .client-row {
-    border-top: 1px solid #f1f5f9;
-    transition: background 0.1s;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
 }
 
 .client-row:hover {
-    background-color: #f8fafc;
+    background-color: #FFFFFF;
+    transform: scale(1.01);
+    box-shadow: 0 10px 25px rgba(142, 169, 200, 0.15);
 }
 
 .client-row td {
-    padding: 18px 10px;
-    vertical-align: middle;
+    padding: 20px 25px;
+    border: none;
 }
 
-.checkbox {
-    width: 22px;
-    height: 22px;
-    border: 2px solid #cbd5e1;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+.client-row td:first-child {
+    border-radius: 20px 0 0 20px;
 }
 
-.checkbox.checked {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
-    color: white;
-    font-size: 12px;
+.client-row td:last-child {
+    border-radius: 0 20px 20px 0;
 }
 
 .task-desc {
-    font-weight: 600;
-    color: #1e293b;
+    font-weight: 700;
+    color: #3A4B5C;
+    font-size: 17px;
 }
 
 .project-link {
-    color: #3b82f6;
-    font-weight: 500;
+    color: #8EA9C8;
+    font-weight: 600;
     text-decoration: none;
+    transition: color 0.2s;
+}
+
+.project-link:hover {
+    color: #3A4B5C;
 }
 
 .separator {
-    color: #cbd5e1;
-    margin: 0 8px;
+    color: #D7EBFF;
+    margin: 0 12px;
+    font-weight: 300;
 }
 
-.due-info, .status-text {
-    font-size: 14px;
-    color: #64748b;
+.due-info {
+    font-size: 13px;
+    color: #8EA9C8;
+    background: #F6F3EF;
+    padding: 6px 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-text {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .status-text.completed {
-    color: #10b981;
-    font-weight: 600;
+    color: #8EA9C8;
+    background: #D7EBFF;
+    padding: 4px 10px;
+    border-radius: 8px;
 }
 
 .status-text.pending {
-    font-weight: 500;
+    color: #8EA9C8;
+    opacity: 0.6;
+    padding: 4px 10px;
 }
 
 .actions-col {
@@ -109,14 +134,16 @@ body {
 }
 
 .action-icon {
-    margin-left: 15px;
+    margin-left: 20px;
     text-decoration: none;
-    opacity: 0.5;
-    transition: opacity 0.2s;
+    font-size: 18px;
+    filter: grayscale(1) opacity(0.4);
+    transition: all 0.2s;
 }
 
 .action-icon:hover {
-    opacity: 1;
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.2);
 }
 
 .btn-link {

@@ -1,9 +1,9 @@
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f5f7fb;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #F6F3EF;
     margin: 0;
     padding: 0;
-    color: #1f2937;
+    color: #3A4B5C;
 }
 
 .container {
@@ -68,4 +68,24 @@ body {
 .actions a {
     text-decoration: none;
     margin-right: 10px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    border: 2px dashed #D7EBFF;
+    margin-top: 20px;
+    color: #8EA9C8;
+}
+
+.empty-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.empty-state h3 {
+    color: #3A4B5C;
+    margin-bottom: 5px;
 }

@@ -32,8 +32,12 @@ public class ProjectController {
     @GetMapping("/list")
     public String listAllProjects(Model model) {
         List<ProjectsDTO> projects = projectService.getAllProjects();
-        ClientDTO client = clientService.getClientById(projects.getFirst().getClientId());
-        model.addAttribute("client", client);
+        if (!projects.isEmpty()) {
+            ClientDTO client = clientService.getClientById(projects.getFirst().getClientId());
+            model.addAttribute("client", client);
+        } else {
+            model.addAttribute("client", new ClientDTO());
+        }
         model.addAttribute("projects", projects);
         model.addAttribute("newProject", new ProjectsDTO());
         return "projects/list";

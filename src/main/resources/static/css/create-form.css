@@ -1,9 +1,9 @@
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f5f7fb;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #F6F3EF;
     margin: 0;
     padding: 0;
-    color: #1f2937;
+    color: #3A4B5C;
 }
 
 .form-container {
@@ -67,4 +67,25 @@ input {
     border-radius: 8px;
     text-align: center;
     font-weight: 600;
+}
+
+.soft-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #D7EBFF;
+    background-color: #FFFFFF;
+    color: #3A4B5C;
+    font-family: inherit;
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238EA9C8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.soft-select:focus {
+    outline: none;
+    border-color: #8EA9C8;
+    box-shadow: 0 0 0 4px rgba(215, 235, 255, 0.5);
 }

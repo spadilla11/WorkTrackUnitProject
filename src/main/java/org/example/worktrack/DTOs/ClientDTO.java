@@ -13,9 +13,6 @@ public class ClientDTO {
     private String name;
     private String email;
     private String company;
-
     private List<ProjectsDTO> projects;
-
-//    private UserDTO user;
     private Long userId;
 }

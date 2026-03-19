@@ -1,4 +1,4 @@
-/* --- 1. THEME VARIABLES --- */
+/*THEME VARIABLES */
 :root {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -11,14 +11,13 @@
     --danger-red: #ef4444;
 }
 
-/* --- 2. BASE RESET --- */
+/*BASE RESET*/
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #F6F3EF;
     margin: 0;
     padding: 0;
-    line-height: 1.5;
+    color: #3A4B5C;
 }
 
 .container {
@@ -27,7 +26,7 @@ body {
     padding: 0 20px;
 }
 
-/* --- 3. HEADER & NAVIGATION --- */
+/* HEADER & NAVIGATION*/
 .project-header {
     display: flex;
     justify-content: space-between;
@@ -132,7 +131,7 @@ h1 {
     gap: 24px;
 }
 
-/* --- 5.1 PROGRESS BAR --- */
+/* PROGRESS BAR*/
 .progress-header {
     display: flex;
     justify-content: space-between;
@@ -160,7 +159,7 @@ h1 {
     transition: width 0.4s ease;
 }
 
-/* --- 6. TASK LIST (FIXED TRASH CAN) --- */
+/* TASK LIST (FIXED TRASH CAN) */
 .task-item {
     display: flex;
     justify-content: space-between; /* Force right side to the edge */
@@ -229,10 +228,10 @@ h1 {
     transform: scale(1.05);
 }
 
-/* --- 7. PROFESSIONAL LOG EXPENSE INPUT --- */
+/*  PROFESSIONAL LOG EXPENSE INPUT */
 .budget-input-group {
     display: flex;
-    align-items: stretch; /* Forces input and button to match height perfectly */
+    align-items: stretch;
     margin-top: 20px;
     padding-top: 20px;
     border-top: 1px solid var(--border-color);
@@ -255,16 +254,16 @@ h1 {
 
 .budget-input-group input {
     width: 100%;
-    box-sizing: border-box; /* Keeps padding from expanding the width */
+    box-sizing: border-box;
     padding: 10px 12px 10px 30px;
     border: 1px solid var(--border-color);
-    border-radius: 8px 0 0 8px; /* Flat right edge */
+    border-radius: 8px 0 0 8px;
     font-size: 14px;
     outline: none;
     transition: border-color 0.2s;
-    border-right: none; /* Join with button */
+    border-right: none;
     margin: 0;
-    height: 100%; /* Fill the stretch container */
+    height: 100%;
 }
 
 .budget-input-group input:focus {
@@ -273,7 +272,7 @@ h1 {
 
 .budget-input-group .btn-primary-sm {
     border: none;
-    border-radius: 0 8px 8px 0; /* Flat left edge */
+    border-radius: 0 8px 8px 0;
     padding: 0 20px;
     background-color: var(--primary-blue);
     color: white;
@@ -290,7 +289,7 @@ h1 {
     background-color: var(--primary-hover);
 }
 
-/* --- 8. MODALS --- */
+/* 8. MODALS */
 .modal-overlay {
     display: none;
     position: fixed;
@@ -319,7 +318,7 @@ h1 {
 
 .modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
 
-/* --- 9. BUTTONS & UTILITIES --- */
+/* 9. BUTTONS & UTILITIES */
 .btn-primary-sm {
     background-color: var(--primary-blue);
     color: white;

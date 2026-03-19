@@ -47,14 +47,14 @@
         <tbody>
         <tr th:each="client : ${clients}" class="client-row">
             <td>
-                <a th:href="@{/clients/CLprojects/{id}(id=${client.id})}" class="client-link">
+                <a style="text-decoration: none; color: black" th:href="@{/clients/CLprojects/{id}(id=${client.id})}" class="client-link">
                     <strong th:text="${client.name}">Sarah Johnson</strong>
                 </a>
                 <br>
             </td>
 
             <td>
-                <a th:href="'mailto:' + ${client.email}" th:text="${client.email}" class="email-link">
+                <a style="text-decoration: none; color: black"  th:href="'mailto:' + ${client.email}" th:text="${client.email}" class="email-link">
                     email@example.com
                 </a>
             </td>

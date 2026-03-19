@@ -1,8 +1,5 @@
 package org.example.worktrack.controller;
-
 import org.example.worktrack.DTOs.UserDTO;
-import org.example.worktrack.DTOs.UserRegistrationDTO;
-import org.example.worktrack.entities.User;
 import org.example.worktrack.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

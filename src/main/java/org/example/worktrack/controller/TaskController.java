@@ -45,6 +45,19 @@ public class TaskController {
         return "tasks/create";
     }
 
+    @GetMapping("/add")
+    public String showGeneralCreateForm(Model model) {
+        model.addAttribute("task", new TasksDTO());
+        model.addAttribute("projects", projectService.getAllProjects());
+        return "tasks/create";
+    }
+
+    @PostMapping("/save-general")
+    public String saveGeneralTask(@ModelAttribute("task") TasksDTO tasksDTO) {
+        taskService.saveTask(tasksDTO);
+        return "redirect:/tasks/list";
+    }
+
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         TasksDTO taskDTO = taskService.getTaskById(id);

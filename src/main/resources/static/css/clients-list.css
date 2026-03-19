@@ -1,9 +1,9 @@
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f5f7fb;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+    background-color: #F6F3EF;
     margin: 0;
     padding: 0;
-    color: #1f2937;
+    color: #3A4B5C;
 }
 
 .container {
