@@ -1,3 +1,4 @@
+/* --- 1. THEME VARIABLES --- */
 :root {
     --bg-color: #f8fafc;
     --card-bg: #ffffff;
@@ -7,8 +8,10 @@
     --text-muted: #64748b;
     --border-color: #e2e8f0;
     --success-green: #10b981;
+    --danger-red: #ef4444;
 }
 
+/* --- 2. BASE RESET --- */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
@@ -24,7 +27,7 @@ body {
     padding: 0 20px;
 }
 
-
+/* --- 3. HEADER & NAVIGATION --- */
 .project-header {
     display: flex;
     justify-content: space-between;
@@ -52,11 +55,6 @@ h1 {
     letter-spacing: -0.02em;
 }
 
-.header-left p {
-    color: var(--text-muted);
-    margin: 4px 0 0 0;
-}
-
 .status-badge {
     background: #f1f5f9;
     padding: 6px 16px;
@@ -67,7 +65,7 @@ h1 {
     border: 1px solid var(--border-color);
 }
 
-
+/* --- 4. STATS GRID --- */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -82,7 +80,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .icon-box {
@@ -100,9 +98,9 @@ h1 {
 .stat-label {
     font-size: 13px;
     color: var(--text-muted);
-    margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin: 0;
 }
 
 .stat-value {
@@ -111,7 +109,7 @@ h1 {
     margin: 0;
 }
 
-
+/* --- 5. CARDS & CHARTS --- */
 .content-card {
     background: var(--card-bg);
     padding: 24px;
@@ -121,47 +119,6 @@ h1 {
     border: 1px solid rgba(0,0,0,0.05);
 }
 
-.content-card h3 {
-    font-size: 16px;
-    font-weight: 600;
-    margin: 0 0 20px 0;
-}
-
-
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.progress-percentage {
-    color: var(--primary-blue);
-    font-weight: 700;
-}
-
-.progress-bar-container {
-    height: 12px;
-    background: #f1f5f9;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-top: 12px;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--primary-blue);
-    transition: width 0.5s ease-in-out;
-}
-
-
-.charts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-bottom: 24px;
-}
-
-
 .card-header-flex {
     display: flex;
     justify-content: space-between;
@@ -169,32 +126,54 @@ h1 {
     margin-bottom: 20px;
 }
 
-.btn-primary-sm {
-    background-color: var(--primary-blue);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s;
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
-.btn-primary-sm:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.task-item {
+/* --- 5.1 PROGRESS BAR --- */
+.progress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
-.task-item:last-child {
-    border-bottom: none;
+.progress-percentage {
+    color: var(--success-green);
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: var(--border-color); /* Light gray track */
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--success-green);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+}
+
+/* --- 6. TASK LIST (FIXED TRASH CAN) --- */
+.task-item {
+    display: flex;
+    justify-content: space-between; /* Force right side to the edge */
+    align-items: center;
+    padding: 16px 12px;
+    margin: 0 -12px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    background-color: #f8fafc;
+    transform: translateX(4px);
 }
 
 .task-left {
@@ -203,12 +182,21 @@ h1 {
     gap: 16px;
 }
 
+.task-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: auto; /* Ensures anchor to the right */
+}
+
 .circle-icon {
     width: 20px;
     height: 20px;
     border: 2px solid #cbd5e1;
     border-radius: 50%;
-    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
 }
 
 .circle-icon.completed {
@@ -216,45 +204,169 @@ h1 {
     border-color: var(--success-green);
 }
 
-.task-left p {
-    margin: 0;
-    font-weight: 500;
-}
-
-.task-date {
-    font-size: 14px;
+.text-strikethrough {
+    text-decoration: line-through;
     color: var(--text-muted);
 }
 
-
-.empty-chart-message, .empty-list-state {
+.btn-delete {
+    background: #fee2e2;
+    color: var(--danger-red);
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 40px 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-delete:hover {
+    background: var(--danger-red);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* --- 7. PROFESSIONAL LOG EXPENSE INPUT --- */
+.budget-input-group {
+    display: flex;
+    align-items: stretch; /* Forces input and button to match height perfectly */
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.input-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+.currency-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--text-muted);
-}
-
-.empty-list-state .sub-text {
-    font-size: 14px;
-    margin-top: 8px;
-    max-width: 300px;
-}
-
-.text-link {
-    color: var(--primary-blue);
-    text-decoration: none;
     font-weight: 600;
-    margin-top: 12px;
+    z-index: 1;
 }
 
-.text-link:hover {
-    text-decoration: underline;
+.budget-input-group input {
+    width: 100%;
+    box-sizing: border-box; /* Keeps padding from expanding the width */
+    padding: 10px 12px 10px 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px 0 0 8px; /* Flat right edge */
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    border-right: none; /* Join with button */
+    margin: 0;
+    height: 100%; /* Fill the stretch container */
 }
 
+.budget-input-group input:focus {
+    border-color: var(--primary-blue);
+}
 
+.budget-input-group .btn-primary-sm {
+    border: none;
+    border-radius: 0 8px 8px 0; /* Flat left edge */
+    padding: 0 20px;
+    background-color: var(--primary-blue);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.budget-input-group .btn-primary-sm:hover {
+    background-color: var(--primary-hover);
+}
+
+/* --- 8. MODALS --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+}
+
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color);
+}
+
+.modal-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; }
+
+/* --- 9. BUTTONS & UTILITIES --- */
+.btn-primary-sm {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.danger-zone {
+    margin-top: 48px;
+    border: 1px solid #fee2e2 !important;
+    background: #fffafa;
+}
+
+.btn-danger {
+    background-color: #ffffff;
+    color: var(--danger-red);
+    border: 1px solid var(--danger-red);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-red);
+    color: #ffffff;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
 @media (max-width: 1024px) {
     .charts-grid { grid-template-columns: 1fr; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -262,5 +374,4 @@ h1 {
 
 @media (max-width: 640px) {
     .stats-grid { grid-template-columns: 1fr; }
-    .project-header { flex-direction: column; gap: 16px; }
 }
