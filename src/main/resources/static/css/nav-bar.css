@@ -1,50 +1,145 @@
+:root {
+    --primary-blue: #1e3a8a;
+    --accent-cyan: #38bdf8;
+    --glass-bg: rgba(30, 58, 138, 0.85);
+}
+
 .navbar {
-    background: #1e3a8a;
-    color: white;
+    background: rgba(30, 58, 138, 0.8) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 22px 48px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 15px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .navbar-brand {
-    font-size: 20px;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    text-decoration: none !important;
+    letter-spacing: -1.2px;
+    background: linear-gradient(135deg, #fff 40%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.nav-bar-div {
-    display: flex;
+.nav-item a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 40%, rgba(56, 189, 248, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-item a:hover {
+    background: linear-gradient(135deg, #fff 20%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.8));
+    transform: translateY(-1px);
 }
 
 .navbar-ul {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     margin: 0;
     padding: 0;
     align-items: center;
 }
 
 .nav-item a {
+    position: relative;
     text-decoration: none;
-    color: #e5e7eb;
+    color: rgba(255, 255, 255, 0.7);
     font-size: 15px;
-    font-weight: 500;
-    transition: 0.2s;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: 0.3s ease;
+}
+
+
+.nav-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 10px var(--accent-cyan);
+    transition: width 0.3s ease;
 }
 
 .nav-item a:hover {
-    color: white;
+    color: #fff;
 }
 
-.nav-item a:active {
-    color: #93c5fd;
+.nav-item a:hover::after {
+    width: 100%;
 }
 
 .nav-item:last-child a {
-    padding-left: 10px;
-    border-left: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 40%, rgba(56, 189, 248, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item:last-child a:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.5);
+    background: linear-gradient(135deg, #ff9999 0%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+    transform: translateY(-1px);
+}
+
+.nav-item:last-child a::after {
+    display: none;
+}
+
+.nav-item a.active {
+    background: linear-gradient(135deg, #fff 20%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.6));
+}
+
+.nav-item a.active::after {
+    width: 100%;
+    background: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan);
+    animation: underlinePulse 2s infinite ease-in-out;
+}
+
+@keyframes underlinePulse {
+    0% {
+        box-shadow: 0 0 8px var(--accent-cyan);
+        opacity: 0.8;
+    }
+    50% {
+        box-shadow: 0 0 18px var(--accent-cyan), 0 0 5px #fff;
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 8px var(--accent-cyan);
+        opacity: 0.8;
+    }
 }

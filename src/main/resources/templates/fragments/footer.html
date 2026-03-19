@@ -1,0 +1,85 @@
+<div th:fragment="common-footer">
+    <style>
+        @media (pointer: fine) {
+            *, html, body, a, button, .client-row, .stat-card, .btn-icon, .btn-primary,
+            .nav-link, input, select, textarea, [role="button"], td, th, tr, table {
+                cursor: none !important;
+            }
+        }
+
+        #custom-cursor {
+            pointer-events: none;
+            position: fixed;
+            z-index: 9999999999 !important;
+            top: 0;
+            left: 0;
+            background: transparent !important;
+            border: none !important;
+            outline: none !important;
+            transform: translate3d(-100px, -100px, 0);
+            will-change: transform;
+        }
+
+        #custom-cursor svg {
+            overflow: visible !important;
+            background: transparent !important;
+        }
+
+        .cursor-shape {
+            fill: rgba(255, 255, 255, 0.75);
+            stroke: #2f5cf6;
+            stroke-width: 1.5px;
+
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            filter: drop-shadow(0 4px 10px rgba(47, 92, 246, 0.2));
+
+            transition:
+                    fill 0.2s ease,
+                    stroke 0.2s ease,
+                    transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            transform-origin: 3px 2px;
+        }
+
+        .cursor-hover .cursor-shape {
+            fill: rgba(47, 92, 246, 0.9);
+            stroke: #ffffff;
+            transform: scale(1.1);
+            filter: drop-shadow(0 6px 15px rgba(47, 92, 246, 0.4));
+        }
+    </style>
+
+    <div id="custom-cursor">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path class="cursor-shape" d="M3 2V21.5L8.5 16L13 25L16.5 23.5L12 14.5H20.5L3 2Z" />
+        </svg>
+    </div>
+
+    <script>
+        (function() {
+            const cursor = document.getElementById("custom-cursor");
+
+            window.addEventListener("mousemove", (e) => {
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+            });
+
+            document.addEventListener("mouseleave", () => {
+                cursor.style.opacity = "0";
+            });
+
+            document.addEventListener("mouseenter", () => {
+                cursor.style.opacity = "1";
+            });
+
+            document.addEventListener("mouseover", (e) => {
+
+                const isHoverable = e.target.closest('a, button, .stat-card, .client-row, .btn-icon, .btn-primary, .nav-link, input, [role="button"], .client-directory tr');
+                if (isHoverable) {
+                    cursor.classList.add("cursor-hover");
+                } else {
+                    cursor.classList.remove("cursor-hover");
+                }
+            });
+        })();
+    </script>
+</div>

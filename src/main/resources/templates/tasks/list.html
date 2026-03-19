@@ -1,45 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkTrack - Tasks</title>
     <link rel="stylesheet" th:href="@{/css/nav-bar.css}">
     <link rel="stylesheet" th:href="@{/css/tasks-list.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
 
 <div th:replace="fragments/navbar :: navbar"></div>
 
-<div class="main-content">
-    <div class="header-section">
-        <h1 class="page-title">Tasks</h1>
-        <a th:href="@{/tasks/add}" class="add-task-btn">+ Add Task</a>
+<div class="container">
+    <div class="section-header">
+        <div>
+            <h2>Task Management</h2>
+            <p>Organize your workflow and track daily progress</p>
+        </div>
+        <a th:href="@{/tasks/add}" class="btn-primary">
+            <span class="material-symbols-rounded">add_task</span>
+            <span>Add Task</span>
+        </a>
     </div>
 
-    <div class="tasks-container">
-        <table class="client-table">
+    <div class="table-container">
+        <table class="project-table">
             <tbody class="tasks-list">
-            <tr th:each="task : ${tasks}" class="client-row">
+            <tr th:each="task : ${tasks}" class="project-row">
+                <td class="task-main-col">
+                    <div class="task-info-stack">
+                        <span class="bold-text" th:text="${task.description}">Design homepage</span>
 
-                <td class="details-col">
-                    <span class="task-desc" th:text="${task.description}">Design homepage</span>
-                    <span class="separator">—</span>
-                    <span class="project-link" th:text="${task.projectName}">Website Redesign</span>
-                    <span class="separator">—</span>
-                    <span class="due-info">
-                            📅 <span th:text="${task.dueDate}">May 19</span>
-                        </span>
-                    <span class="separator">—</span>
-
-                    <span th:class="${task.completed ? 'status-pill completed' : 'status-pill pending'}"
-                          th:text="${task.completed ? 'Completed' : 'Pending'}">Status</span>
+                        <div class="task-meta">
+                                <span class="project-tag">
+                                    <span class="material-symbols-rounded">layers</span>
+                                    <span th:text="${task.projectName}">Website Redesign</span>
+                                </span>
+                            <span class="separator">/</span>
+                            <span class="deadline-tag">
+                                    <span class="material-symbols-rounded">calendar_month</span>
+                                    <span th:text="${task.dueDate}">May 19</span>
+                                </span>
+                            <span class="separator">/</span>
+                            <span th:class="${task.completed ? 'status-badge completed' : 'status-badge pending'}"
+                                  th:text="${task.completed ? 'Completed' : 'Pending'}">Status</span>
+                        </div>
+                    </div>
                 </td>
 
-                <td class="actions-col">
-                    <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="action-icon">✏️</a>
-                    <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" style="display:inline;">
+                <td class="actions-cell">
+                    <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="btn-icon edit" title="Edit">
+                        <span class="material-symbols-rounded">edit_square</span>
+                    </a>
+                    <form th:action="@{/tasks/delete/task/{id}(id=${task.id})}" method="post" style="display:inline;">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-                        <button type="submit" class="action-icon btn-link">🗑️</button>
+                        <button type="submit" class="btn-icon delete-btn" title="Delete">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
                     </form>
                 </td>
             </tr>
@@ -47,5 +65,7 @@
         </table>
     </div>
 </div>
+
+<div th:replace="fragments/footer :: common-footer"></div>
 </body>
 </html>

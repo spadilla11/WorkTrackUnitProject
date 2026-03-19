@@ -2,6 +2,7 @@ package org.example.worktrack.controller;
 
 import org.example.worktrack.DTOs.ClientDTO;
 import org.example.worktrack.DTOs.ProjectsDTO;
+import org.example.worktrack.DTOs.TasksDTO;
 import org.example.worktrack.service.ClientService;
 import org.example.worktrack.service.ProjectService;
 import org.springframework.stereotype.Controller;
@@ -77,6 +78,7 @@ public class ClientController {
     private void addGlobalStats(Model model) {
         List<ClientDTO> clients = clientService.getAllClients();
         int projectsCount = 0;
+        int pendingTask = 0;
 
 
         if (clients != null) {
@@ -85,13 +87,23 @@ public class ClientController {
                 if (projects != null) {
                     projectsCount += projects.size();
                 }
+                for (ProjectsDTO project : projects) {
+                    for (TasksDTO task : project.getTasks()) {
+                        if (task.isCompleted()) {
+                            continue;
+                        } else {
+                            pendingTask++;
+                        }
+                    }
+                }
             }
             model.addAttribute("totalClients", clients.size());
         } else {
             model.addAttribute("totalClients", 0);
         }
 
+
         model.addAttribute("totalProjects", projectsCount);
-        model.addAttribute("totalTasks", 0);
+        model.addAttribute("totalTasks", pendingTask);
     }
 }
