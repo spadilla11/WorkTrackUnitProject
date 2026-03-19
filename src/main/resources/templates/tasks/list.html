@@ -13,18 +13,13 @@
 <div class="main-content">
     <div class="header-section">
         <h1 class="page-title">Tasks</h1>
-        <a href="/tasks/add" class="add-task-btn">+ Add Task</a>
+        <a th:href="@{/tasks/add}" class="add-task-btn">+ Add Task</a>
     </div>
 
     <div class="tasks-container">
         <table class="client-table">
             <tbody class="tasks-list">
             <tr th:each="task : ${tasks}" class="client-row">
-                <td class="status-col">
-                    <div th:class="${task.completed ? 'checkbox checked' : 'checkbox'}">
-                        <span th:if="${task.completed}">✓</span>
-                    </div>
-                </td>
 
                 <td class="details-col">
                     <span class="task-desc" th:text="${task.description}">Design homepage</span>
@@ -35,12 +30,13 @@
                             📅 <span th:text="${task.dueDate}">May 19</span>
                         </span>
                     <span class="separator">—</span>
-                    <span th:class="${task.completed ? 'status-text completed' : 'status-text pending'}"
+
+                    <span th:class="${task.completed ? 'status-pill completed' : 'status-pill pending'}"
                           th:text="${task.completed ? 'Completed' : 'Pending'}">Status</span>
                 </td>
 
                 <td class="actions-col">
-                    <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="action-icon"> ✏️</a>
+                    <a th:href="@{/tasks/edit/{id}(id=${task.id})}" class="action-icon">✏️</a>
                     <form th:action="@{/tasks/delete/{id}(id=${task.id})}" method="post" style="display:inline;">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                         <button type="submit" class="action-icon btn-link">🗑️</button>

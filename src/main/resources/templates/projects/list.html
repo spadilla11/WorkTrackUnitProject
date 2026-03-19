@@ -17,7 +17,7 @@
         <a th:href="@{/projects/new}" class="btn-new">+ New Project</a>
     </div>
 
-    <table class="client-table">
+    <table class="client-table" th:if="${not #lists.isEmpty(projects)}">
         <thead>
         <tr>
             <th>Project Title</th>
@@ -48,6 +48,12 @@
         </tr>
         </tbody>
     </table>
+
+    <div th:if="${#lists.isEmpty(projects)}" class="empty-state">
+        <div class="empty-icon">📂</div>
+        <h3>No projects found</h3>
+        <p>It looks like your workspace is empty. Create a new project to get started!</p>
+    </div>
 </div>
 
 <div th:replace="fragments/footer :: common-footer"></div>
