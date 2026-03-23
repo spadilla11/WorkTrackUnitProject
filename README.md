@@ -40,8 +40,3 @@ The project was developed between **March 11, 2026, and March 23, 2026**:
 3.  **Phase III - Implementation**: Development of the backend (entities, services, controllers) and frontend styling.
 4.  **Phase IV - Maintenance**: Polishing UI, bug fixing (resolving mapper recursion/stack overflow issues), and final documentation.
 
-## Glossary
-* **Attribute**: Extra details inside a tag that change how it works.
-* **Class**: A reusable CSS identifier for styling multiple elements.
-* **Spring Security**: A framework used to secure the application and manage user access.
-* **URL Routing**: System connecting URLs to specific functions or controllers.
